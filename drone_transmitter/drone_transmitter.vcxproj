@@ -76,8 +76,20 @@
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="thread_capture\thread_capture.cpp" />
+    <ClCompile Include="thread_serial\thread_serial.cpp" />
+    <ClCompile Include="thread_tcp1\thread_tcp1.cpp" />
+    <ClCompile Include="thread_tcp2\thread_tcp2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="data\data_commands.h" />
+    <ClInclude Include="data\data_telemetry.h" />
+    <ClInclude Include="data\data_video.h" />
+    <ClInclude Include="globals.h" />
+    <ClInclude Include="thread_capture\thread_capture.h" />
+    <ClInclude Include="thread_serial\thread_serial.h" />
+    <ClInclude Include="thread_tcp1\thread_tcp1.h" />
+    <ClInclude Include="thread_tcp2\thread_tcp2.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

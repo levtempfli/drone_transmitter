@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{adb04702-046b-4083-ab14-6f0ada5f96e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5138e95d-a81d-4250-96d0-704423803f29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{819ce592-b440-4662-af4e-634ac9f1e513}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\data">
+      <UniqueIdentifier>{dadcb140-be59-4536-a8e7-df5e4cbac378}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\thread_tcp1">
+      <UniqueIdentifier>{56cb1e2f-e027-41cf-aa75-654c236e18b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\thread_tcp1">
+      <UniqueIdentifier>{a3702c0f-d477-4811-93d3-1cfb3f25b889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\thread_tcp2">
+      <UniqueIdentifier>{4dd08dd2-aba6-4e93-8eba-aa24d57ac022}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\thread_tcp2">
+      <UniqueIdentifier>{0e76b415-dfcd-4caf-819b-542b8bbae55c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\thread_capture">
+      <UniqueIdentifier>{aba1793c-8e9d-4e53-9676-b40ee18ef543}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\thread_capture">
+      <UniqueIdentifier>{8edb6d5e-6ab7-4bac-a5ef-0c655487c183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\thread_serial">
+      <UniqueIdentifier>{448c8645-de00-4902-b529-5532070e5178}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\thread_serial">
+      <UniqueIdentifier>{fdc0ddb0-dc6d-409e-974f-00d3636e6a63}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="thread_serial\thread_serial.cpp">
+      <Filter>Source Files\thread_serial</Filter>
+    </ClCompile>
+    <ClCompile Include="thread_capture\thread_capture.cpp">
+      <Filter>Source Files\thread_capture</Filter>
+    </ClCompile>
+    <ClCompile Include="thread_tcp2\thread_tcp2.cpp">
+      <Filter>Source Files\thread_tcp2</Filter>
+    </ClCompile>
+    <ClCompile Include="thread_tcp1\thread_tcp1.cpp">
+      <Filter>Source Files\thread_tcp1</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="thread_serial\thread_serial.h">
+      <Filter>Header Files\thread_serial</Filter>
+    </ClInclude>
+    <ClInclude Include="thread_capture\thread_capture.h">
+      <Filter>Header Files\thread_capture</Filter>
+    </ClInclude>
+    <ClInclude Include="thread_tcp2\thread_tcp2.h">
+      <Filter>Header Files\thread_tcp2</Filter>
+    </ClInclude>
+    <ClInclude Include="thread_tcp1\thread_tcp1.h">
+      <Filter>Header Files\thread_tcp1</Filter>
+    </ClInclude>
+    <ClInclude Include="data\data_commands.h">
+      <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="data\data_telemetry.h">
+      <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="data\data_video.h">
+      <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,8 +1,12 @@
 ﻿  Validating sources
-  Copying sources remotely to '192.168.0.108'
+  Copying sources remotely to '192.168.0.103'
   Validating architecture
   Starting remote build
   Compiling sources:
   main.cpp
+  thread_capture.cpp
+  thread_serial.cpp
+  thread_tcp1.cpp
+  thread_tcp2.cpp
   Linking objects
   drone_transmitter.vcxproj -> C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\bin\ARM\Debug\drone_transmitter.out
