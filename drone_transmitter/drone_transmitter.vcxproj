@@ -75,23 +75,33 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClCompile Include="error\error.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="tcp_socket\linux_tcpip.cpp" />
     <ClCompile Include="thread_capture\thread_capture.cpp" />
     <ClCompile Include="thread_serial\thread_serial.cpp" />
     <ClCompile Include="thread_tcp1\thread_tcp1.cpp" />
     <ClCompile Include="thread_tcp2\thread_tcp2.cpp" />
+    <ClCompile Include="timer\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data\data_commands.h" />
     <ClInclude Include="data\data_telemetry.h" />
     <ClInclude Include="data\data_video.h" />
+    <ClInclude Include="error\error.h" />
     <ClInclude Include="globals.h" />
+    <ClInclude Include="tcp_socket\linux_tcpip.h" />
     <ClInclude Include="thread_capture\thread_capture.h" />
     <ClInclude Include="thread_serial\thread_serial.h" />
     <ClInclude Include="thread_tcp1\thread_tcp1.h" />
     <ClInclude Include="thread_tcp2\thread_tcp2.h" />
+    <ClInclude Include="timer\timer.h" />
   </ItemGroup>
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Link>
+      <LibraryDependencies>pthread;%(LibraryDependencies)</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

@@ -4,10 +4,7 @@
 #include "data/data_commands.h"
 #include "data/data_telemetry.h"
 #include "data/data_video.h"
-
-extern pthread_mutex_t _dt_cmd_mtx;
-extern pthread_mutex_t _dt_tele_mtx;
-extern pthread_mutex_t _dt_vid_mtx;
+#include "error/error.h"
 
 extern data_commands _dt_cmd;
 extern data_telemetry _dt_tele;

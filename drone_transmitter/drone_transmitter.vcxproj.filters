@@ -37,6 +37,24 @@
     <Filter Include="Source Files\thread_serial">
       <UniqueIdentifier>{fdc0ddb0-dc6d-409e-974f-00d3636e6a63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\error">
+      <UniqueIdentifier>{ac5b6bb6-a306-42eb-9051-6803d357a5f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\error">
+      <UniqueIdentifier>{5cc08488-3768-4960-9b9d-acd9171b2dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tcp_socket">
+      <UniqueIdentifier>{a01bd44f-b401-4c4d-8a33-9a7dd273b91a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tcp_socket">
+      <UniqueIdentifier>{afefbba2-0917-4903-bf64-a5ceccc9bbed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\timer">
+      <UniqueIdentifier>{97f3e34d-00ca-40aa-bc8a-4bc2ebccae2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\timer">
+      <UniqueIdentifier>{a67e837b-a6ae-495a-887e-d6af8d0e04bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,6 +71,15 @@
     </ClCompile>
     <ClCompile Include="thread_tcp1\thread_tcp1.cpp">
       <Filter>Source Files\thread_tcp1</Filter>
+    </ClCompile>
+    <ClCompile Include="error\error.cpp">
+      <Filter>Source Files\error</Filter>
+    </ClCompile>
+    <ClCompile Include="tcp_socket\linux_tcpip.cpp">
+      <Filter>Source Files\tcp_socket</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\timer.cpp">
+      <Filter>Source Files\timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +106,15 @@
     </ClInclude>
     <ClInclude Include="globals.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="error\error.h">
+      <Filter>Header Files\error</Filter>
+    </ClInclude>
+    <ClInclude Include="tcp_socket\linux_tcpip.h">
+      <Filter>Header Files\tcp_socket</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\timer.h">
+      <Filter>Header Files\timer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

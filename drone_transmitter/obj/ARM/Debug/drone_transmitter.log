@@ -1,12 +1,20 @@
 ﻿  Validating sources
-  Copying sources remotely to '192.168.0.103'
+  Copying sources remotely to '192.168.0.101'
   Validating architecture
   Starting remote build
   Compiling sources:
-  main.cpp
-  thread_capture.cpp
-  thread_serial.cpp
   thread_tcp1.cpp
-  thread_tcp2.cpp
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(167,43): warning : conversion to ‘char’ from ‘int’ may alter its value [-Wconversion]
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(167,43): warning :    if (chs / 16 < 10) out_buffer[len] = 48 + (chs / 16);
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(167,43): warning :                                         ~~~^~~~~~~~~~~~
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(168,42): warning : conversion to ‘char’ from ‘int’ may alter its value [-Wconversion]
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(168,42): warning :    else out_buffer[len] = (chs / 16) - 10 + 65;
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(168,42): warning :                           ~~~~~~~~~~~~~~~~^~~~
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(170,43): warning : conversion to ‘char’ from ‘int’ may alter its value [-Wconversion]
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(170,43): warning :    if (chs % 16 < 10) out_buffer[len] = 48 + (chs % 16);
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(170,43): warning :                                         ~~~^~~~~~~~~~~~
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(171,42): warning : conversion to ‘char’ from ‘int’ may alter its value [-Wconversion]
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(171,42): warning :    else out_buffer[len] = (chs % 16) - 10 + 65;
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(171,42): warning :                           ~~~~~~~~~~~~~~~~^~~~
   Linking objects
   drone_transmitter.vcxproj -> C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\bin\ARM\Debug\drone_transmitter.out
