@@ -38,7 +38,7 @@ private:
 	static void connected_loop();
 	static void decode_message(int rec);
 	static int encode_message();
-	static void solve_message(int len);
+	static void solve_message(int len, bool correct);
 	static int create_message(int type);
 	static int calculate_checksum(char *buff, int begin, int end);
 };

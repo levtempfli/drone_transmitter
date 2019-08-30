@@ -105,7 +105,7 @@ void thread_tcp1::connected_loop() {
 	}
 	
 
-	if (0&&conn_msg_timer.GetCounter() > conn_msg_timeout) {
+	if (conn_msg_timer.GetCounter() > conn_msg_timeout) {
 		t_han.disconnect();
 		connected = 0;
 		pthread_mutex_lock(&_dt_cmd.mutex);
@@ -119,7 +119,7 @@ void thread_tcp1::decode_message(int rec) {
 	for (int i = 0; i < rec; i++) {
 		char_rec = in_buffer[i];
 		switch (char_rec) {
-		case '#':
+		case '@':
 			in_status = 1;
 			slv_buff_i = 0;
 			break;
@@ -146,7 +146,8 @@ void thread_tcp1::decode_message(int rec) {
 				if (char_rec < 58) in_chd_2 = char_rec - 48;
 				else in_chd_2 = char_rec - 55;
 				in_chd_1 = in_chd_1 * 16 + in_chd_2;
-				if (in_chd_1 == calculate_checksum(slv_buffer, 1, slv_buff_i)) solve_message(slv_buff_i);
+				if (in_chd_1 == calculate_checksum(slv_buffer, 1, slv_buff_i)) solve_message(slv_buff_i, 1);
+				else solve_message(slv_buff_i, 0);
 				in_status = 0;
 				break;
 			}
@@ -159,7 +160,7 @@ void thread_tcp1::decode_message(int rec) {
 int thread_tcp1::encode_message() {
 	if (msg_send_timer.GetCounter() > msg_send_period) {
 		int len = create_message(msg_types_curr);
-		out_buffer[0] = '#';
+		out_buffer[0] = '@';
 		int chs = calculate_checksum(out_buffer, 1, len);
 		len++;
 		out_buffer[len] = '~';
@@ -176,7 +177,8 @@ int thread_tcp1::encode_message() {
 	return 6;
 }
 
-void thread_tcp1::solve_message(int len) {
+void thread_tcp1::solve_message(int len, bool correct) {
+	printf("%d", correct);
 	for (int i = 1; i <= len; i++) {
 		printf("%c", slv_buffer[i]);///////DEBUG
 	}
