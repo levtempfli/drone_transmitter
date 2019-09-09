@@ -46,7 +46,7 @@ void *thread_tcp1::main(void*ptr) {
 	
 	while (1) {
 		main_loop();
-		usleep(50 * 1000);
+		usleep(mainloop_wait * 1000);
 	}
 
 	return NULL;
@@ -58,7 +58,7 @@ void thread_tcp1::main_loop() {
 	if (r == 0) {
 		connected = 1;
 		pthread_mutex_lock(&_dt_cmd.mutex);
-		_dt_cmd.connected = 1;
+		_dt_cmd.connected_tcp = 1;
 		pthread_mutex_unlock(&_dt_cmd.mutex);
 		t_han.setsocketmode(1);
 		conn_msg_timer.StartCounter();
@@ -76,7 +76,7 @@ void thread_tcp1::connected_loop() {
 	if (ret_v != 11 && ret_v != 0) {
 		connected = 0;
 		pthread_mutex_lock(&_dt_cmd.mutex);
-		_dt_cmd.connected = 0;
+		_dt_cmd.connected_tcp = 0;
 		pthread_mutex_unlock(&_dt_cmd.mutex);
 		t_han.disconnect();
 		return;
@@ -92,7 +92,7 @@ void thread_tcp1::connected_loop() {
 		if (ret_v != 11 && ret_v != 0) {
 			connected = 0;
 			pthread_mutex_lock(&_dt_cmd.mutex);
-			_dt_cmd.connected = 0;
+			_dt_cmd.connected_tcp = 0;
 			pthread_mutex_unlock(&_dt_cmd.mutex);
 			t_han.disconnect();
 			return;
@@ -109,7 +109,7 @@ void thread_tcp1::connected_loop() {
 		t_han.disconnect();
 		connected = 0;
 		pthread_mutex_lock(&_dt_cmd.mutex);
-		_dt_cmd.connected = 0;
+		_dt_cmd.connected_tcp = 0;
 		pthread_mutex_unlock(&_dt_cmd.mutex);
 	}
 }
@@ -173,8 +173,6 @@ int thread_tcp1::encode_message() {
 		return len + 1;
 	}
 	else return 0;
-
-	return 6;
 }
 
 void thread_tcp1::solve_message(int len, bool correct) {

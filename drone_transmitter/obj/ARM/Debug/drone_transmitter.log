@@ -1,27 +1,20 @@
 ﻿  Validating sources
-  Copying sources remotely to '192.168.0.102'
+  Copying sources remotely to '192.168.0.112'
   Validating architecture
   Starting remote build
   Compiling sources:
-  error.cpp
-  main.cpp
-  linux_tcpip.cpp
-  thread_capture.cpp
   thread_serial.cpp
-  thread_tcp1.cpp
-C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(168,43): warning : conversion to ‘char’ from ‘int’ may alter its value [-Wconversion]
-C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(168,43): warning :    if (chs / 16 < 10) out_buffer[len] = 48 + (chs / 16);
-C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(168,43): warning :                                         ~~~^~~~~~~~~~~~
-C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(169,42): warning : conversion to ‘char’ from ‘int’ may alter its value [-Wconversion]
-C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(169,42): warning :    else out_buffer[len] = (chs / 16) - 10 + 65;
-C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(169,42): warning :                           ~~~~~~~~~~~~~~~~^~~~
-C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(171,43): warning : conversion to ‘char’ from ‘int’ may alter its value [-Wconversion]
-C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(171,43): warning :    if (chs % 16 < 10) out_buffer[len] = 48 + (chs % 16);
-C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(171,43): warning :                                         ~~~^~~~~~~~~~~~
-C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(172,42): warning : conversion to ‘char’ from ‘int’ may alter its value [-Wconversion]
-C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(172,42): warning :    else out_buffer[len] = (chs % 16) - 10 + 65;
-C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\thread_tcp1\thread_tcp1.cpp(172,42): warning :                           ~~~~~~~~~~~~~~~~^~~~
-  thread_tcp2.cpp
-  timer.cpp
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_serial\thread_serial.cpp(158,43): warning : conversion from ‘int’ to ‘char’ may change value [-Wconversion]
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_serial\thread_serial.cpp(158,43): warning :    if (chs / 16 < 10) out_buffer[len] = 48 + (chs / 16);
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_serial\thread_serial.cpp(158,43): warning :                                         ~~~^~~~~~~~~~~~
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_serial\thread_serial.cpp(159,42): warning : conversion from ‘int’ to ‘char’ may change value [-Wconversion]
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_serial\thread_serial.cpp(159,42): warning :    else out_buffer[len] = (chs / 16) - 10 + 65;
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_serial\thread_serial.cpp(159,42): warning :                           ~~~~~~~~~~~~~~~~^~~~
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_serial\thread_serial.cpp(161,43): warning : conversion from ‘int’ to ‘char’ may change value [-Wconversion]
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_serial\thread_serial.cpp(161,43): warning :    if (chs % 16 < 10) out_buffer[len] = 48 + (chs % 16);
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_serial\thread_serial.cpp(161,43): warning :                                         ~~~^~~~~~~~~~~~
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_serial\thread_serial.cpp(162,42): warning : conversion from ‘int’ to ‘char’ may change value [-Wconversion]
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_serial\thread_serial.cpp(162,42): warning :    else out_buffer[len] = (chs % 16) - 10 + 65;
+C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\thread_serial\thread_serial.cpp(162,42): warning :                           ~~~~~~~~~~~~~~~~^~~~
   Linking objects
-  drone_transmitter.vcxproj -> C:\Users\LEEVII\Desktop\Drone\drone_repo\drone_transmitter\drone_transmitter\bin\ARM\Debug\drone_transmitter.out
+  drone_transmitter.vcxproj -> C:\Users\LEEVII\Desktop\drone_transmitter\drone_transmitter\bin\ARM\Debug\drone_transmitter.out
