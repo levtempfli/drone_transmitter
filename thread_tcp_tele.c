@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include "data_communication.h"
 #include "lin_tcpip.h"
 #include "timer.h"
 
@@ -14,8 +15,8 @@ static const int mainloop_wait = 50;//miliseconds
 static const int connloop_wait = 10;
 static const int conn_msg_timeout = 5000;
 static const int msg_send_period = 100;
-static const int msg_types_max = 3;
-static int msg_types_curr = 1;
+static const int out_msg_types_max = TELEM_MSG_NUM;//7
+static int out_msg_types_curr = 0;
 static int in_status = 0;
 static int in_chd_1, in_chd_2;
 static int slv_buff_i = 0;
@@ -46,6 +47,7 @@ static int create_message(int type);
 static char calculate_checksum(const char *buff, int begin, int end);
 
 void *thr_tcp_tele_main() {
+    printf("TCP server thread started\n");
     int r;
     r = makesocket(&t_ser);
     if (r != 0) {
@@ -79,7 +81,7 @@ static void main_loop() {
     setsocketmode(&t_ser, 0);
     int r = acceptsck(&t_ser, &t_han, in_ip, &in_port);
     if (r == 0) {
-        connected = 1;//TODO:MSG set
+        connected = 1;
         setsocketmode(&t_han, 1);
         TimerStartCounter(&conn_msg_timer);
         TimerStartCounter(&msg_send_timer);
@@ -94,7 +96,7 @@ static void connected_loop() {
     int ret_v, rec = 0;
     ret_v = receivesck(&t_han, in_buffer, in_buffer_size, &rec);
     if (ret_v != 11 && ret_v != 0) {
-        connected = 0;//TODO:MSG set
+        connected = 0;
         disconnect(&t_han);
         return;
     }
@@ -107,20 +109,20 @@ static void connected_loop() {
     if (to_st != 0) {
         ret_v = sendsck(&t_han, out_buffer, to_st, &sent);
         if (ret_v != 11 && ret_v != 0) {
-            connected = 0;//TODO:MSG set
+            connected = 0;
             disconnect(&t_han);
             return;
         } else if (to_st == sent && ret_v != 11) {
             TimerStartCounter(&msg_send_timer);
-            msg_types_curr++;
-            if (msg_types_curr > msg_types_max) msg_types_curr = 1;
+            out_msg_types_curr++;
+            if (out_msg_types_curr >= out_msg_types_max) out_msg_types_curr = 0;
         }
     }
 
 
     if (TimerGetCounter(&conn_msg_timer) > conn_msg_timeout) {
         disconnect(&t_han);
-        connected = 0;//TODO:MSG set
+        connected = 0;
     }
 }
 
@@ -171,7 +173,14 @@ static void decode_message(int rec) {
 
 static int encode_message() {
     if (TimerGetCounter(&msg_send_timer) > msg_send_period) {
-        int len = create_message(msg_types_curr);
+        int len = create_message(out_msg_types_curr);
+        if (len <= 0) {
+            if (len == -1) {
+                out_msg_types_curr++;
+                if (out_msg_types_curr >= out_msg_types_max) out_msg_types_curr = 0;
+            }
+            return 0;
+        }
         out_buffer[0] = '@';
         int chs = calculate_checksum(out_buffer, 1, len);
         len++;
@@ -187,26 +196,27 @@ static int encode_message() {
 }
 
 static void solve_message(int len, char correct) {
-    printf("%d", correct);
-    for (int i = 1; i <= len; i++) {
-        printf("%c", slv_buffer[i]);///////DEBUG
-    }
+    int type = slv_buffer[1] - '0';
+    if (correct == 0 && type <data_comm.control_msgs_first_k_conti)
+        return;
+    pthread_mutex_lock(&data_comm.control_msgs[type].mtx);
+    data_comm.control_msgs[type].msg_len = len;
+    data_comm.control_msgs[type].ready = 1;
+    memcpy(data_comm.control_msgs[type].msg, slv_buffer + 1, len);
+    pthread_mutex_unlock(&data_comm.control_msgs[type].mtx);
 }
 
 static int create_message(int type) {
-    switch (type) {
-        case 1:
-            strcpy(out_buffer, "Rhello1Z");
-            return 7;
-        case 2:
-            strcpy(out_buffer, "Rhello2Z");
-            return 7;
-        case 3:
-            strcpy(out_buffer, "Rhello3Z");
-            return 7;
-        default:
-            return 0;
-    }
+    int ret_val = 0;
+    pthread_mutex_lock(&data_comm.telem_msgs[type].mtx);
+    if (data_comm.telem_msgs[type].ready == 1 && data_comm.telem_msgs[type].msg_len < out_buffer_size - 3) {
+        out_buffer[0] = 'D';//Dummy
+        memcpy(out_buffer + 1, data_comm.telem_msgs[type].msg, data_comm.telem_msgs[type].msg_len);
+        ret_val = data_comm.telem_msgs[type].msg_len;
+        data_comm.telem_msgs[type].ready = 0;
+    } else if (type >= data_comm.telem_msgs_first_k_conti) ret_val = -1;//Skip this message type
+    pthread_mutex_unlock(&data_comm.telem_msgs[type].mtx);
+    return ret_val;
 }
 
 static char calculate_checksum(const char *buff, int begin, int end) {

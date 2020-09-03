@@ -3,7 +3,7 @@
 #include <string.h>
 #include "data_communication.h"
 
-struct data_comm_strc data_comm;
+struct data_comm_strc data_comm = {.control_msgs_first_k_conti=1, .telem_msgs_first_k_conti=6};
 
 int init_data_comm_struct() {
     int i, r;
