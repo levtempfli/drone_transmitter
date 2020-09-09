@@ -3,7 +3,7 @@ project(drone_transmitter C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(drone_transmitter main.c data_communication.c data_communication.h thread_capture.c thread_capture.h thread_serial.c thread_serial.h thread_vid_stream.c thread_tcp_tele.c timer.c lin_tcpip.c)
+add_executable(drone_transmitter main.c data_communication.c thread_serial.c thread_vid_stream.c thread_tcp_tele.c timer.c lin_tcpip.c)
 
 target_link_libraries(drone_transmitter python3.7m pthread)
 

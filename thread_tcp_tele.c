@@ -14,9 +14,11 @@
 static const int mainloop_wait = 50;//miliseconds
 static const int connloop_wait = 10;
 static const int conn_msg_timeout = 5000;
-static const int msg_send_period = 100;
+static const int msg_send_period = 0;
 static const int out_msg_types_max = TELEM_MSG_NUM;//7
 static int out_msg_types_curr = 0;
+static const int out_msg_max_tries = 2;
+static int curr_num_try = 0;
 static int in_status = 0;
 static int in_chd_1, in_chd_2;
 static int slv_buff_i = 0;
@@ -114,6 +116,7 @@ static void connected_loop() {
             return;
         } else if (to_st == sent && ret_v != 11) {
             TimerStartCounter(&msg_send_timer);
+            curr_num_try = 0;
             out_msg_types_curr++;
             if (out_msg_types_curr >= out_msg_types_max) out_msg_types_curr = 0;
         }
@@ -175,7 +178,9 @@ static int encode_message() {
     if (TimerGetCounter(&msg_send_timer) > msg_send_period) {
         int len = create_message(out_msg_types_curr);
         if (len <= 0) {
-            if (len == -1) {
+            curr_num_try++;
+            if (len == -1 || curr_num_try >= out_msg_max_tries) {
+                curr_num_try = 0;
                 out_msg_types_curr++;
                 if (out_msg_types_curr >= out_msg_types_max) out_msg_types_curr = 0;
             }
@@ -197,7 +202,7 @@ static int encode_message() {
 
 static void solve_message(int len, char correct) {
     int type = slv_buffer[1] - '0';
-    if (correct == 0 && type <data_comm.control_msgs_first_k_conti)
+    if (correct == 0 && type < data_comm.control_msgs_first_k_conti)
         return;
     pthread_mutex_lock(&data_comm.control_msgs[type].mtx);
     data_comm.control_msgs[type].msg_len = len;
